@@ -1,0 +1,5 @@
+# Use a imagem oficial do RabbitMQ
+FROM rabbitmq:management
+
+# Exponha as portas do RabbitMQ
+EXPOSE 5672 15672
