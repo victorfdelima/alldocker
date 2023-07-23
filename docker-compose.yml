@@ -2,25 +2,40 @@ version: '3.8'
 
 services:
   frontend:
+    image: frontendsaesportes
     build:
-      context: ./FrontEnd/frontend-sa
-      dockerfile: Dockerfile
+      context: "./frontend-sa/"
     ports:
       - "4200:80"
+    depends_on:
+      - backend
+      - rabbitmq-1
+    volumes:
+      - ./frontend-sa:/usr/share/nginx/html
+    networks:
+      - saesportes
 
   backend:
+    image: backendsaesportes
     build:
-      context: ./WebApi/WebApi
+      context: "./backend-sa/WebApi/"
     ports:
-      - "44363:80"
+      - "47662:80"
     depends_on:
-      - rabbitmq
+      - rabbitmq-1
+    networks:
+      - saesportes
 
-  rabbitmq:
-      build:
-        context: ./rabbitmq
-        dockerfile: Dockerfile
-      ports:
-        - "5672:5672"
-        - "15672:15672"
+  rabbitmq-1:
+    image: rabbitmqclientservice
+    build:
+      context: ./rabbitmq/
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - saesportes
 
+networks: 
+  saesportes:
+    driver: bridge
