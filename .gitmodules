@@ -1,3 +1,6 @@
 [submodule "frontend-sa"]
 	path = frontend-sa
 	url = https://github.com/victorfdelima/frontend-sa.git
+[submodule "backend-sa"]
+	path = backend-sa
+	url = https://github.com/victorfdelima/backend-sa
