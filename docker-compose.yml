@@ -10,8 +10,6 @@ services:
     depends_on:
       - backend
       - rabbitmq-1
-    volumes:
-      - ./frontend-sa:/usr/share/nginx/html
     networks:
       - saesportes
 
